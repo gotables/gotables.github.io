@@ -1,0 +1,13 @@
+.centered {
+    margin-left: 42.5%;
+}
+
+.rightfloat {
+    float: right;
+    margin-right: -20px;
+}
+
+.leftfloat {
+    float: left;
+    margin-left: 20px;
+}
