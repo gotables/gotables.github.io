@@ -58,3 +58,32 @@ function example(){
 "
     document.getElementById("input_table").value = exa
 }
+
+
+function copyGo (id) {
+    var element = document.getElementById(id)
+    var text = element.innerHTML
+    text.select
+    element.focus
+  
+    try {
+      document.execCommand('copy')
+      copyCodeToClipboard(text, id)
+    } catch (err) {
+      console.error('Something went wrong to copy to clipboard', err)
+    }
+}
+
+function copyCodeToClipboard (text, id) {
+    if (!navigator.clipboard) {
+      console.warn('Re-try')
+      copyGo(id)
+      return
+    }
+    navigator.clipboard.writeText(text).then(function () {
+      // done
+    }, function (err) {
+      console.error('Could not copy text: ', err)
+    })
+}
+  

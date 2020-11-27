@@ -11,3 +11,8 @@
     float: left;
     margin-left: 20px;
 }
+
+.error-msg {
+    color: brown;
+    font-weight:bold;
+}

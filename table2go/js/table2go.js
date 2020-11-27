@@ -31,7 +31,7 @@ function table2go(in_table,opt){
         var sql_vars = para_mysql_data(in_table)
     }catch (e){
         console.error(e)
-        document.getElementById("output_go").innerHTML = e
+        document.getElementById("output_go").innerHTML = '<p class="error-msg">' + e + '</p>'
         return
     }
     //console.log("sql var:", sql_vars)
@@ -40,17 +40,11 @@ function table2go(in_table,opt){
        var out = create_go(sql_vars)
     }catch (e){
         console.error(e)
-        document.getElementById("output_go").innerHTML = e
+        document.getElementById("output_go").innerHTML = '<p class="error-msg">' + e + '</p>'
         return
     }
     document.getElementById("output_go").innerHTML = out
     //console.log("out data:", out)
-
-    // console.log(go_struct)
-
-    // var tempFn = doT.template(go_struct);
-    // var result = tempFn({test:'id int'})
-    // console.log(result)
 
 
     function para_mysql_data(input){
@@ -83,10 +77,12 @@ function table2go(in_table,opt){
                     mysql_var.type = "uint"
                 }else if (v_array[1].indexOf("int") >= 0){
                     mysql_var.type = "int"
-                }else if (v_array[1].indexOf("char") >= 0 || v_array[1].indexOf("text") >= 0){
-                    mysql_var.type = "string"
+                }else if (v_array[1].indexOf("float") >= 0){
+                    mysql_var.type = "float32"
+                }else if (v_array[1].indexOf("double") >= 0){
+                    mysql_var.type = "float64"
                 }else{
-                    throw new Error("syntax error: " + v)
+                    mysql_var.type = "string"
                 }
                 //Null
                 if (v_array[2].indexOf("no") >= 0){
